@@ -1,5 +1,8 @@
 #include "Module.h"
 #include <iostream>
+#include <string.h>
+#define MAX 100
+
 
 void sliceImage (BMPImage image, int h, int w, BMPImage *&listImage) {
 
@@ -35,6 +38,29 @@ void sliceImage (BMPImage image, int h, int w, BMPImage *&listImage) {
     listImage = temp;
 }
 
+void _generateFileName(int i, char str[]) {
+
+    char path[] = ".bmp", headerName[] = "result/SlicedImage";
+
+    char temp[MAX], n = 0;
+    while (i > 0) {
+        temp[n++] = (i % 10) + '0';
+        i /= 10;
+    }
+
+    // Reverse
+    for (int i = n - 1; i >= n / 2; i--) {
+        temp[i] = temp[n - i - 1];
+    }
+
+    temp[n] = '\0';
+
+    strcat(str, headerName);
+    strcat(str, temp);
+    strcat(str, path);
+}
+
+
 void handleProcess (int h, int w, const BMPImage& image) {
     BMPImage *listImage = nullptr;
     sliceImage(image, h, w, listImage);
@@ -44,7 +70,11 @@ void handleProcess (int h, int w, const BMPImage& image) {
         return;
     }
 
-    listImage[0].write("output.bmp");
+    for (int i = 0; i < w * h; i++) {
+        char fileName[MAX] = "";
+        _generateFileName(i + 1, fileName);
+        listImage[i].write(fileName);
+    }
 
 }
 

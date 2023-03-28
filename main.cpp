@@ -19,12 +19,10 @@ void readfile(char * file) {
 
 int main() {
 
-	char path[] = "littleQ.bmp", example[] = "prof_octo.bmp";
-	char outPath[] = "output.bmp";
+	char path[] = "prof_octo.bmp";
 	BMPImage picture;
-	picture.read(example);
-    picture.write(outPath);
+	picture.read(path);
 
-    handleProcess(2,2, picture);
+    handleProcess(2,3, picture);
 	return 0;
 }
