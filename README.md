@@ -1,0 +1,5 @@
+# BMPSlice
+
+```
+make all
+```
