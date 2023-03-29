@@ -1,4 +1,4 @@
 #include "BMP.h"
 
-void sliceImage (BMPImage image, int h, int w, BMPImage * &listImage);
-void handleProcess (int h, int w, const BMPImage &image);
+void sliceImage ( BMPImage image, uint32_t h, uint32_t w, BMPImage * &listImage);
+void handleProcess (uint32_t h , uint32_t w ,  BMPImage image);

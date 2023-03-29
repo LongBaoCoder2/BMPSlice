@@ -4,10 +4,11 @@
 #define MAX 100
 
 
-void sliceImage (BMPImage image, int h, int w, BMPImage *&listImage) {
+void sliceImage (BMPImage image, uint32_t h, uint32_t w, BMPImage *&listImage) {
 
-    int sizeList = h * w;
-    int height = image.height(), width = image.width();
+    int32_t sizeList = h * w;
+    int32_t height = image.height(), width = image.width();
+
     int newHeight = height / h, newWidth = width / w;
 
     BMPImage *temp = new BMPImage[sizeList];
@@ -16,12 +17,15 @@ void sliceImage (BMPImage image, int h, int w, BMPImage *&listImage) {
         std::cout << "Out of memory\n.";
         return;
     }
+
     Color **tempColor = nullptr;
     for (int i = 0; i < sizeList; i++) {
         temp[i].header = image.header;
         temp[i].dib = image.dib;
         temp[i].dib.b_width = newWidth;
         temp[i].dib.b_height = newHeight;
+
+
 
         tempColor = new Color *[newHeight];
         for (int j = 0; j < newHeight; j++) {
@@ -35,12 +39,14 @@ void sliceImage (BMPImage image, int h, int w, BMPImage *&listImage) {
         temp[i]._update();
     }
 
+
+
     listImage = temp;
 }
 
 void _generateFileName(int i, char str[]) {
 
-    char path[] = ".bmp", headerName[] = "result/SlicedImage";
+    char path[] = ".bmp", headerName[] = "SlicedImage";
 
     char temp[MAX], n = 0;
     while (i > 0) {
@@ -61,20 +67,22 @@ void _generateFileName(int i, char str[]) {
 }
 
 
-void handleProcess (int h, int w, const BMPImage& image) {
+void handleProcess (uint32_t h, uint32_t w,  BMPImage image) {
     BMPImage *listImage = nullptr;
     sliceImage(image, h, w, listImage);
+
+
 
     if (listImage == nullptr) {
         std::cout << "Out of memory.\n";
         return;
     }
 
-    for (int i = 0; i < w * h; i++) {
+    for (uint32_t i = 0; i < w * h; i++) {
         char fileName[MAX] = "";
         _generateFileName(i + 1, fileName);
         listImage[i].write(fileName);
+        std::cout << "Success\n";
     }
-
 }
 

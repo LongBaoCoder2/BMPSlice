@@ -1,28 +1,7 @@
-#include <iostream>
-#include <fstream>
-#include "BMP.h"
-#include "Module.h"
+#include "Interface.h"
 
-void readfile(char * file) {
-    std::ifstream in(file , std::ios::binary);
+int main(int argc, char **argv) {
+	BMPSliceApplication(argc, argv);
 
-    char buffer;
-    for (int i = 0; i < 200; i++) {
-        in.read(&buffer, 1);
-        std::cout << (unsigned int) buffer << " ";
-    }
-    std::cout << std::endl;
-
-    in.close();
-}
-
-
-int main() {
-
-	char path[] = "prof_octo.bmp";
-	BMPImage picture;
-	picture.read(path);
-
-    handleProcess(2,3, picture);
 	return 0;
 }
