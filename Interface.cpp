@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <iostream>
 
 /* Syntax
 #define SYNTAX_ERROR -1

@@ -1,6 +1,6 @@
 /bin
 /obj
-
+/result
 *.cbp
 *.depend
 

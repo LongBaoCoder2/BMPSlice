@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <fstream>
 
 #pragma pack(push, 1)
 struct BMPHeader {
@@ -8,10 +9,7 @@ struct BMPHeader {
     uint32_t reserved;
     uint32_t offset;
 };
-#pragma pack(pop)
 
-
-#pragma pack(push, 1)
 struct BMP_Dib {
     uint32_t dib_size;
     int32_t b_width;
@@ -27,13 +25,14 @@ struct BMP_Dib {
     uint32_t color_table;
     uint32_t important_color;
 };
-#pragma pack(pop)
 
 struct Color {
     unsigned char Blue;
     unsigned char Green;
     unsigned char Red;
 };
+
+#pragma pack(pop)
 
 struct BMPImage {
     BMPHeader header;
@@ -68,6 +67,18 @@ struct BMPImage {
 
     // Update Info Header & Dib
     void _update();
+
+    // Read color
+    void _readColor(std::istream &inFile);
+
+    // Read Header & Dib
+    void _readInfo (std::istream &inFile);
+
+    // Write Header & Dib to file
+    void _writeInfo(std::ostream &outFile);
+
+    // Write Color
+    void _writeColor(std::ostream &outFile);
 
 };
 
