@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #define MAX 100
+
 struct Argument {
     uint32_t _width;
     uint32_t _height;

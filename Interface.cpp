@@ -29,6 +29,8 @@ void BMPSliceApplication(int argc, char **argv) {
 }
 
 
+
+
 void _getMainArgument(int argc, char **argv, Argument &argument) {
     const char *optionHeight = "-h";
     const char *optionWidth = "-w";
